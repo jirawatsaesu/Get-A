@@ -13,7 +13,7 @@ class NewVisitorTest(unittest.TestCase):
         # Marry กำลังจะสอบปลายภาค เธอต้องการที่นั่งอ่านหนังสือกับเพื่อนของเธอ
         # Marry เข้าเว็บ Get-A.com
         self.browser.get('http://localhost:8000')
-        self.assertIn('Find place', self.browser.title)
+        self.assertIn('Find Place', self.browser.title)
         self.fail('Finish the test')
 
         # Marry เลือกแท็บ “ร้านนั่งอ่านหนังสือ”
