@@ -19,4 +19,5 @@ from place import views
 
 urlpatterns = [
     path('', views.home_page, name='home'),
+    path('place/', views.find_place, name='place'),
 ]
