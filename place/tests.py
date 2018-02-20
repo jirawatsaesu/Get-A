@@ -1,7 +1,4 @@
-from django.urls import resolve
 from django.test import TestCase
-from django.http import HttpRequest
-
 from place.views import home_page, find_place 
 
 class HomePageTest(TestCase):
@@ -10,6 +7,7 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
 
-    def test_url_resolves_to_place_page_view(self):
-        found = resolve('/place/')
-        #self.assertEqual(found.func, find_place)
+
+    def test_place_page_returns_correct_html(self):
+        response = self.client.get('/place/')
+        self.assertTemplateUsed(response, 'place.html')

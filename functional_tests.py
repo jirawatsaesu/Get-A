@@ -13,8 +13,14 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_radio(self):
         # Marry กำลังจะสอบปลายภาค เธอต้องการที่นั่งอ่านหนังสือกับเพื่อนของเธอ
         # Marry เข้าเว็บ Get-A.com
-        self.browser.get('http://localhost:8000')
-        self.assertIn('Find Place', self.browser.title)
+        self.browser.get('http://localhost:8000/')
+
+        # Marry เลือกแท็บ “สถานที่อ่านหนังสือ”
+        place_link = self.browser.find_element_by_link_text('Place')
+        self.assertEqual(place_link.get_attribute('href'), 'http://localhost:8000/place/')
+
+        time.sleep(1)
+        place_link.click()
 
         # Marry กับเพื่อนของเธอต้องการร้านที่ใกล้ที่สุด จึงกดปุ่ม “ใกล้สุด”
         inputbox = self.browser.find_element_by_id('id_radio')
@@ -36,11 +42,13 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_view_a_list_of_book(self):
         # เมื่อกลับถึงบ้าน Mary อยากผ่อนคลาย ไม่รู้จะอ่านหนังสืออะไรดี จึงเข้าเว็บ Get-A.com อีกครั้ง
         self.browser.get('http://localhost:8000')
-        self.assertIn('Find Place', self.browser.title)
 
-        # และเลือกแท็บ “หนังสือน่าอ่าน”
+        # Marry เลือกแท็บ “หนังสือน่าอ่าน”
         book_link = self.browser.find_element_by_link_text('Book')
-        self.assertEqual(book_link, 'http://localhost:8000/book/')
+        self.assertEqual(book_link.get_attribute('href'), 'http://localhost:8000/book/')
+
+        time.sleep(1)
+        book_link.click()
 
         time.sleep(3)
         self.fail('Finish the test')
