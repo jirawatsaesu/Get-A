@@ -32,5 +32,26 @@ class NewVisitorTest(unittest.TestCase):
 
         # Marry และเพื่อนของเธอถึงที่หมายโดยปลอดภัย และได้ออกจากหน้าเว็บไป
 
+
+    def test_can_view_a_list_of_book(self):
+        # เมื่อกลับถึงบ้าน Mary อยากผ่อนคลาย ไม่รู้จะอ่านหนังสืออะไรดี จึงเข้าเว็บ Get-A.com อีกครั้ง
+        self.browser.get('http://localhost:8000')
+        self.assertIn('Find Place', self.browser.title)
+
+        # และเลือกแท็บ “หนังสือน่าอ่าน”
+        book_link = self.browser.find_element_by_link_text('Book')
+        self.assertEqual(book_link, 'http://localhost:8000/book/')
+
+        time.sleep(3)
+        self.fail('Finish the test')
+        # Marry พบเห็นหนังสือแนะนำ 2-3 เล่ม และหมวดหมู่สำหรับค้นหาหนังสือ
+
+        # Marry เลือกหมวดหมู่ “Computer” และพิมพ์ชื่อหนังสือ “Data Structure”
+
+        # Marry พบหนังสือชื่อ “Data Structure and Algorithm” และเห็นคะแนนหนังสือได้ 4 ดาว จาก 5 ดาว
+
+        # Marry ได้หนังสือที่ต้องการจะอ่าน และปิดเว็บไป
+
+
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
