@@ -50,11 +50,21 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
         book_link.click()
 
-        time.sleep(3)
-        self.fail('Finish the test')
-        # Marry พบเห็นหนังสือแนะนำ 2-3 เล่ม และหมวดหมู่สำหรับค้นหาหนังสือ
+        # Marry พบเห็นหนังสือแนะนำ 3 เล่ม และหมวดหมู่สำหรับค้นหาหนังสือ
+        table_best_book = self.browser.find_element_by_id('best book')
+        columns = table_best_book.find_elements_by_tag_name('td')
+        self.assertIn('Book1', [column.text for column in columns])
+        self.assertIn('Book2', [column.text for column in columns])
+        self.assertIn('Book3', [column.text for column in columns])
+
+        checkbox = self.browser.find_element_by_id('categories')
+        time.sleep(5)
+        inputbox = checkbox.find_element_by_tag_name('input')
+        self.assertEqual(inputbox.get_attribute('name'), 'computer')
 
         # Marry เลือกหมวดหมู่ “Computer” และพิมพ์ชื่อหนังสือ “Data Structure”
+        time.sleep(3)
+        self.fail('finish the test')
 
         # Marry พบหนังสือชื่อ “Data Structure and Algorithm” และเห็นคะแนนหนังสือได้ 4 ดาว จาก 5 ดาว
 
