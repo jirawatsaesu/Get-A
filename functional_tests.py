@@ -10,7 +10,7 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_can_start_a_radio(self):
+    def test_can_find_a_place(self):
         # Marry กำลังจะสอบปลายภาค เธอต้องการที่นั่งอ่านหนังสือกับเพื่อนของเธอ
         # Marry เข้าเว็บ Get-A.com
         self.browser.get('http://localhost:8000/')
