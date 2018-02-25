@@ -20,6 +20,7 @@ from book import views as book_views
 
 urlpatterns = [
     path('', place_views.home_page, name='home'),
+    path('admin/', admin.site.urls),
     path('place/', place_views.find_place, name='place'),
     path('book/', book_views.find_book, name='book'),
 ]
