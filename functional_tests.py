@@ -58,10 +58,26 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('Analog', [column.text for column in columns])
 
         checkbox = self.browser.find_element_by_id('categories')
-        inputbox = checkbox.find_element_by_tag_name('input')
-        self.assertEqual(inputbox.get_attribute('name'), 'computer')
+        inputbox = checkbox.find_elements_by_tag_name('input')
+        self.assertEqual(inputbox[0].get_attribute('name'), 'com')
+        self.assertEqual(inputbox[1].get_attribute('name'), 'math')
+        self.assertEqual(inputbox[2].get_attribute('name'), 'phy')
+        self.assertEqual(inputbox[3].get_attribute('name'), 'sport')
+
+        self.assertEqual(inputbox[4].get_attribute('name'), 'book_name')
+        self.assertEqual(inputbox[5].get_attribute('value'), 'Search')
 
         # Marry เลือกหมวดหมู่ “Computer” และพิมพ์ชื่อหนังสือ “Data Structure”
+        time.sleep(1)
+        inputbox[0].click()
+        inputbox[2].click()
+
+        time.sleep(1)
+        inputbox[4].send_keys('Data Structure')
+
+        time.sleep(1)
+        inputbox[5].click()
+
         time.sleep(3)
         self.fail('Finish the test')
 
