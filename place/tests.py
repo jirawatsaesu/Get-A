@@ -8,6 +8,6 @@ class HomePageAndPlacePageTest(TestCase):
         self.assertTemplateUsed(response, 'home.html')
 
 
-    def test_place_page_returns_correct_html(self):
+    def test_uses_place_page_template(self):
         response = self.client.get('/place/')
         self.assertTemplateUsed(response, 'place.html')
