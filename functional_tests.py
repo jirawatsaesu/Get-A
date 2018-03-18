@@ -70,7 +70,6 @@ class NewVisitorTest(unittest.TestCase):
         # Marry เลือกหมวดหมู่ “Computer” และพิมพ์ชื่อหนังสือ “Data Structure”
         time.sleep(1)
         inputbox[0].click()
-        inputbox[2].click()
 
         time.sleep(1)
         inputbox[4].send_keys('Data Structure')
@@ -78,19 +77,16 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
         inputbox[5].click()
 
-        # Marry พบหนังสือชื่อ “Data Structures and Algorithms” และเห็นคะแนนหนังสือได้ 4 ดาว จาก 5 ดาว
+        # Marry พบหนังสือชื่อ “Data Structures and Algorithms” และเห็นคะแนนหนังสือได้ 4.5 ดาว จาก 5 ดาว
         table_search_book = self.browser.find_element_by_id('search_book')
-        rows = table_search_book.find_elements_by_tag_name('tr')
+        rows = table_search_book.find_elements_by_tag_name('td')
         self.assertIn('Data Structures and Algorithms in Python', [row.text for row in rows])
         self.assertIn('Data Structures and Algorithms with Java', [row.text for row in rows])
         self.assertIn('Data Structures and Algorithms', [row.text for row in rows])
 
-        time.sleep(3)
-        self.fail('Finish the test')
-
         # Marry ได้หนังสือที่ต้องการจะอ่าน และปิดเว็บไป
+        time.sleep(3)
         self.browser.quit()
-
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')

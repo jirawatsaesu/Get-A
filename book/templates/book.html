@@ -23,5 +23,14 @@
             <input type="submit" value="Search">
         </form>
 
+        <table id="search_book" border="1">
+            {% for book in books %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ book.name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
     </body>
 </html>
