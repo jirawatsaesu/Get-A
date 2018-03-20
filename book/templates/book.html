@@ -15,10 +15,10 @@
         <br><br>
 
         <form id="categories" method="GET">
-            <input type="checkbox" name="com" value="computer">Computer<br><br>
-            <input type="checkbox" name="math" value="math">Math<br><br>
-            <input type="checkbox" name="phy" value="physic">Physic<br><br>
-            <input type="checkbox" name="sport" value="sport">Sport<br><br>
+            <input type="checkbox" name="com" value="Computer">Computer<br><br>
+            <input type="checkbox" name="math" value="Math">Math<br><br>
+            <input type="checkbox" name="phy" value="Physic">Physic<br><br>
+            <input type="checkbox" name="sport" value="Sport">Sport<br><br>
             <input type="text" name="book_name" placeholder="Enter Book Name">
             <input type="submit" value="Search">
         </form>
@@ -28,6 +28,7 @@
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ book.name }}</td>
+                <td>{{ book.score }}</td>
             </tr>
             {% endfor %}
         </table>
