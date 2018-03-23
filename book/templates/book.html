@@ -23,10 +23,10 @@
             <input type="submit" value="Search">
         </form>
 
-        <table id="search_book" border="1">
+        <table id="search_book">
             {% for book in books %}
             <tr>
-                <td>{{ forloop.counter }}</td>
+                <td>{{ forloop.counter }}. </td>
                 <td>{{ book.name }}</td>
                 <td>{{ book.score }}</td>
             </tr>

@@ -1,0 +1,5 @@
+Computer	Data Structures and Algorithms			4.5
+Computer	Data Structures and Algorithms in Python	3.8
+Computer	Data Structures and Algorithms with Java	4.0
+Math		Math II						3.0
+Computer	A Byte of Python				3.5
