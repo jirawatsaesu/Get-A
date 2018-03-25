@@ -1,45 +1,36 @@
 from book.models import Book, Categories
- 
-categories = [
-'Computer',
-'Math',
-'Physic',
-'Sport',
-]
 
-# [Category, Name, Score]
-#books = [
-#['Computer', 'Data Structures and Algorithms', 4.5],
-#['Computer', 'Data Structures and Algorithms in Python', 3.8],
-#['Computer', 'Data Structures and Algorithms with Java', 4.0],
-#['Math', 'Math II', 3.0],
-#['Computer', 'A Byte of Python', 3.5],
-#]
-
-def create_categories():
-    global categories
-
-    for category in categories:
-        Categories(name=category).save()
+class NameDuplicate(Exception):
+    def __init__(self, name):
+        self.name = name
 
 
 def create_books():
-    global books
-
     f = open('data/all_book.txt', 'r')
 
     for line in f:
-        all_book = [b for b in line.split('\t') if b not in '']
-        all_book[2] = float(all_book[-1][:-1])    #delete \n
+        all_book = [word for word in line.split('\t') if word not in '']         # Split name, score and categories
+        all_book[1] = float(all_book[1])
+        all_book[-1] = all_book[-1][:-1].split(',')                              # Delete /n and split category
 
-        Categories.objects.get(name=all_book[0]).book_set.create(name=all_book[1], score=all_book[2])
+        try:
+            if Book.objects.filter(name__exact=all_book[0]):                     # Check for an existing book
+                raise NameDuplicate(all_book[0])
+            else:
+                b = Book(name=all_book[0], score=all_book[1])
+                b.save()
+
+                for c in all_book[-1]:
+                    if Categories.objects.filter(name__exact=c):                 # Check for an existing category
+                        b.categories.add(Categories.objects.get(name=c))
+                    else:
+                        Categories(name=c).save()
+                        b.categories.add(Categories.objects.get(name=c))
+
+        except NameDuplicate as n:
+            print('NameDuplicate: There is an existing ' + n.name + ' book')
 
     f.close()
-
-
-def create_all():
-    create_categories()
-    create_books()
 
 
 def delete_all():
@@ -47,4 +38,5 @@ def delete_all():
     Book.objects.all().delete()
 
 
-
+def delete_books():
+    Book.objects.all().delete()
