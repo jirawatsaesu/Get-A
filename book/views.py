@@ -14,27 +14,27 @@ def find_book(request):
                 cates_list = Categories.objects.filter(name__contains=cate_name1)[0]
                 book_list1 = cates_list.book_set.filter(name__contains=search_name)
             else:
-                book_list1 = Book.objects.none()
+                book_list1 = Book.objects.all()
             if cate_name2 != '':
                 cates_list = Categories.objects.filter(name__contains=cate_name2)[0]
                 book_list2 = cates_list.book_set.filter(name__contains=search_name)
             else:
-                book_list2 = Book.objects.none()
+                book_list2 = Book.objects.all()
             if cate_name3 != '':
                 cates_list = Categories.objects.filter(name__contains=cate_name3)[0]
                 book_list3 = cates_list.book_set.filter(name__contains=search_name)
             else:
-                book_list3 = Book.objects.none()
+                book_list3 = Book.objects.all()
             if cate_name4 != '':
                 cates_list = Categories.objects.filter(name__contains=cate_name4)[0]
                 book_list4 = cates_list.book_set.filter(name__contains=search_name)
             else:
-                book_list4 = Book.objects.none()
+                book_list4 = Book.objects.all()
 
-            books = book_list1 | book_list2 | book_list3 | book_list4
+            books = list(set(book_list1) & set(book_list2) & set(book_list3) & set(book_list4))
             return render(request, 'book.html', {'books': books})
 
-        if search_name != '':
+        elif search_name != '':
             books = Book.objects.filter(name__contains=search_name)
             return render(request, 'book.html', {'books': books})
 
